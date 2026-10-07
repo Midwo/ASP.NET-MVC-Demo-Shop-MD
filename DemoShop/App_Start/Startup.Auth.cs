@@ -61,7 +61,7 @@ namespace DemoShop
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
-
+           
             //var facebookData = new FacebookAuthenticationOptions()
             //{
             //    AppId = "x",
@@ -109,7 +109,7 @@ namespace DemoShop
                         string redirectUri = context.RedirectUri;
 
                         if (!redirectUri.Contains("https://"))
-                        {
+            {
                             redirectUri = redirectUri.Replace("http://", "https://");
                         }
                         context.Response.Redirect(redirectUri);
