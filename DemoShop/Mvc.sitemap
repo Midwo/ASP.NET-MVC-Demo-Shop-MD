@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Strona główna" controller="Home" action="Index">
+    <mvcSiteMapNode title="Category" controller="Store" action="ProductList" dynamicNodeProvider="DemoShop.Infrastructure.DetailCategoryDynamicNodeProvider, DemoShop">
+      <mvcSiteMapNode title="Product" controller="Store" action="Details" dynamicNodeProvider="DemoShop.Infrastructure.DetailProductDynamicNodeProvider, DemoShop"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Twój koszyk" controller="ShoppingCart" action="Index">
+      <mvcSiteMapNode title="Adres wysyłki" controller="ShoppingCart" action="PaidCart">
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Konto" controller="Account" action="Index">
+      <mvcSiteMapNode title="Logowanie" controller="Account" action="Login">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Rejestracja" controller="Account" action="Register">
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Konto" controller="Manage" action="Index">
+      <mvcSiteMapNode title="Adres dostarczania" controller="Manage" action="ProfileAddress">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Inne sposoby logowania" controller="Manage" action="OtherLogIn">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Zmiana hasła" controller="Manage" action="ChangePassword">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Ustawienie hasła" controller="Manage" action="SetPassword">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Historia zamówień" controller="Manage" action="ViewOfOrderHistory">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Oczekujące zamówieia" controller="Manage" action="WaitingViewOfOrderHistory">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Wysłane zamówieia" controller="Manage" action="ShippedViewOfOrderHistory">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Anulowane zamówieia" controller="Manage" action="CanceledViewOfOrderHistory">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Wysyłka nowych zamówień" controller="Manage" action="AdminNewViewOfOrder">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Wysłane zamówienia" controller="Manage" action="AdminShippedViewOfOrder">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Anulowane zamówienia" controller="Manage" action="AdminCanceledViewOfOrder">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Historia zamówień" controller="Manage" action="AdminAllViewOfOrder">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Edycja produktu" controller="Manage" action="UpdateOrAddProduct">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Widok produktu nieaktywnego" controller="Store" action="AdminDetails">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Lista produktów nieaktywnych" controller="Manage" action="DisabledProduct">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Raport zapisanych osób newsletter" controller="Manage" action="Excel">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Pytania klientów" controller="Contacts" action="index">
+        <mvcSiteMapNode title="Edycja" controller="Contacts" action="Edit">
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="Detale" controller="Contacts" action="Details">
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="Usuwanie" controller="Contacts" action="Delete">
+        </mvcSiteMapNode>
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+  </mvcSiteMapNode>
+</mvcSiteMap>

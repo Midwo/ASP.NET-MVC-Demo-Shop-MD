@@ -1,0 +1,121 @@
+﻿@model DemoShop.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_UnderLayoutWithMain.cshtml";
+}
+
+<div class="row container_content" style="margin-top: 30px;">
+    <div class="col-md-12">
+        <section id="loginForm" style="margin: auto; max-width: 300px;">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4 class="text-center">Zaloguj do DemoShop</h4>
+                <h6 class="text-center" style="background-color:yellow;">Konto administratora:</h6>
+                <h6 class="text-center" style="background-color:yellow;">admin@mdwojak.pl, hasło: 123456Aa!</h6>
+                <h6 class="text-center" style="background-color:#b6ff00;">Konto klienta:</h6>
+                <h6 class="text-center" style="background-color:#b6ff00;">klient@mdwojak.pl, hasło: 123456Aa!</h6>
+                <hr />
+                @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessage("error", "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control TextBoxForLogin" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control TextBoxForLogin" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)<br />
+                            <input id="check1" type="checkbox" onclick="EnableLogin()">
+                            <span>
+                                Akceptuję warunki:
+                                @Html.ActionLink("polityki prywatności", "ViewWithInformation", new { controller = "Home", viewname = "Policy" }),
+                                @Html.ActionLink("regulamin sklepu", "ViewWithInformation", new { controller = "Home", viewname = "Regulamin" }),
+                                @Html.ActionLink("regulamin strony", "ViewWithInformation", new { controller = "Home", viewname = "Statute" })
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                
+                        <input type="submit" value="Zaloguj" class="btn btn-default tooltip-wrapper" id="buttonLogin" data-toggle="tooltip" title="Musisz wyrazić zgodę!" data-placement="top" disabled />
+                    </div>
+                </div>
+                <p>
+                    @Html.ActionLink("Załóż nowe konto", "Register")
+                </p>
+                @* Enable this once you have account confirmation enabled for password reset functionality
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>*@
+            }
+
+            @*@using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+            {
+                @Html.AntiForgeryToken()
+
+
+                <button type="submit" class="btn tooltip-wrapper" data-placement="top" data-toggle="tooltip" id="LoginFacebookBotton" name="provider" value="Facebook" title="Musisz wyrazić zgodę!" disabled><span class="fa fa-facebook"></span>Logowanie przez Facebook</button>
+                <button type="submit" class="btn tooltip-wrapper" data-placement="top"   data-toggle="tooltip" id="LoginGoogleBotton" name="provider" value="Google" title="Musisz wyrazić zgodę!" disabled><span class="fa fa-google"></span>Logowanie przez Google</button>
+
+            }*@
+        </section>
+    </div>
+
+
+</div>
+
+
+
+
+
+@section scripts
+    {
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        
+        function EnableLogin() {
+            var checkBox1 = document.getElementById("check1");
+            if (checkBox1.checked == true) {
+                document.getElementById("buttonLogin").disabled = false;
+                document.getElementById("LoginFacebookBotton").disabled = false;
+                document.getElementById("LoginGoogleBotton").disabled = false;
+                $("#buttonLogin").attr("title", '');
+                $("#buttonLogin").removeClass('tooltip-wrapper');
+                $("#LoginFacebookBotton").attr("title", '');
+                $("#LoginFacebookBotton").removeClass('tooltip-wrapper');
+                $("#LoginGoogleBotton").attr("title", '');
+                $("#LoginGoogleBotton").removeClass('tooltip-wrapper');
+            }
+            else {
+                document.getElementById("buttonLogin").disabled = true;
+                document.getElementById("LoginFacebookBotton").disabled = true;
+                document.getElementById("LoginGoogleBotton").disabled = true;
+                $("#buttonLogin").attr("title", 'Musisz wyrazić zgodę!');
+                $("#buttonLogin").addClass('tooltip-wrapper');
+                $("#LoginFacebookBotton").attr("title", 'Musisz wyrazić zgodę!');
+                $("#LoginFacebookBotton").addClass('tooltip-wrapper');
+                $("#LoginGoogleBotton").attr("title", 'Musisz wyrazić zgodę!');
+                $("#LoginGoogleBotton").addClass('tooltip-wrapper');
+            }
+        }
+    </script>
+
+}
+

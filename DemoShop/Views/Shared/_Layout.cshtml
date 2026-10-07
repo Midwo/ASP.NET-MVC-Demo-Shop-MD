@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=egde,chrome=1" />
+
+    <title>@*@ViewBag.Title*@ Sklep demonstracyjny Michał Dwojak</title>
+    <meta name="description" content="MD DemoShop- wersja demo" />
+    <meta name="keywords" content="Dwojak Michał, DemoShop, Demo, Portfolio, MVC, Dwojak, Michał" />
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @System.Web.Optimization.Styles.Render("~/mdwojak.ico")
+</head>
+<body>
+    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">  <i class="fa fa-home"></i> MD-Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("O nas", "ViewWithInformation", "Home", new { viewname = "Onas" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Kontakt", "ViewWithInformation", "Home", new { viewname = "Kontakt" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Regulamin", "ViewWithInformation", "Home", new { viewname = "Regulamin" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Wysyłka", "ViewWithInformation", "Home", new { viewname = "Wysylka" }, new { @class = "nav-link" })
+                </li>
+
+                @*<li class="nav-item active">
+                        <a class="nav-link disabled" href="#">
+                            <i class="fa fa-envelope-o">
+                                <span class="badge badge-danger">11</span>
+                            </i>
+                            Disabled
+                        </a>
+                    </li>*@
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @Html.Partial("_LoginPartial")
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","ShoppingCart")">
+                        <i class="fa fa-shopping-cart">
+                            <span class="badge badge-danger" id="cartQuantity-in-nav-menu">@Html.Action("GetCartItemsCount", "ShoppingCart")</span>
+                        </i>
+                        Koszyk
+                    </a>
+                </li>
+
+            </ul>
+            @*<form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>*@
+        </div>
+    </nav>
+
+
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+
+    <div id="wrapper">
+        <div id="div-bolid">
+            <div id="info-demo">
+                <b>Wersja demonstracyjna</b>
+            </div>
+            <a href="https://mdwojak.pl/">
+                <div id="info-site">
+                    <b>mdwojak.pl</b>
+                </div>
+            </a>
+        </div>
+        @RenderBody()
+
+    </div>
+
+
+
+    <footer>
+        <div class="container text-center">
+
+            <div class="call-to-action">
+                <p>&copy; @DateTime.Now.Year - Michał Dwojak - Wersja demonstracyjna sklepu.</p>
+                <input class="btn btn-info btn-xl sr-button" type="button" value="Polityka prywatności" onclick="location.href='@Url.Action("ViewWithInformation", "Home", new { viewname = "Policy"})'" />
+                <input class="btn btn-info btn-xl sr-button" type="button" value="Regulamin" onclick="location.href='@Url.Action("ViewWithInformation", "Home", new { viewname = "Statute"})'" />
+                <input class="btn btn-success btn-xl sr-button" type="button" value="Wróć do mdwojak.pl" onclick="location.href='http://mdwojak.pl';" />
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/slick")
+
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

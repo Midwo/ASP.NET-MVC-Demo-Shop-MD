@@ -1,0 +1,283 @@
+﻿@model DemoShop.ViewModels.HomeViewModel
+@using DemoShop.Infrastructure
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@*<div class="container_content">
+        <div class="jumbotron">
+            <h1>ASP.NET</h1>
+            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+            <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Getting started</h2>
+                <p>
+                    ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                    enables a clean separation of concerns and gives you full control over markup
+                    for enjoyable, agile development.
+                </p>
+                <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Get more libraries</h2>
+                <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Web Hosting</h2>
+                <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            </div>
+        </div>
+    </div>*@
+<div class="jumbotron-index jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Witaj w Demo-Shop MD</h1>
+        <p class="lead">Jest to wersja demonstracyjna sklepu internetowego. Zapraszam do zapozanania sie z jego możliwościami.</p>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Kategorie produktów:</h2>
+                <hr class="light">
+
+            </div>
+        </div>
+        <div class="menu-horizontal text-center">
+            <ul>
+                @foreach (var category in Model.Categories)
+                {
+                    <li>
+                        <a style="background-image: url(@Url.IconsMenuProduct(category.FileNamePhoto))" href="@Url.Action("ProductList","Store", new { categoryname = category.Title })">
+                            @category.Title
+                        </a>
+                    </li>
+                }
+
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<section class="bg-white">
+    <div class="container con-newproduct">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Nowości w sklepie:</h2>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row container_content">
+        @foreach (var product in Model.NewProducts)
+        {
+            <div class="col-md-3 col-12 col-sm-6">
+                <div class="item-product">
+                    <div class="product-img-wrapper">
+                        <img src="@Url.Products(product.FileNamePhoto)" class="img-fluid" alt="@product.ProductTitle">
+                        <div>
+                            <a href="@Url.Action("Details","Store", new { id = product.ProductID})" class="btn">Zobacz&nbsp;<i class="fa fa-search"></i></a>
+                        </div>
+                    </div><hr />
+                    <h3><a href="@Url.Action("Details","Store", new { id = product.ProductID})">@product.ProductTitle</a></h3>
+                    <div class="product-price">@product.Price zł</div>
+                    <a href="@Url.Action("AddToShoppingCart","ShoppingCart", new { id = product.ProductID })" class="btn add2cart">
+                        Kup&nbsp;<i class="fa fa-cart-plus"></i>
+                    </a>
+                    <div class="overlay overlay-new"></div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+</section>
+
+
+
+<section class="bg-white">
+    <div class="container con-promotion">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Aktulane promocje:</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row container_content">
+        @foreach (var product in Model.Promotions)
+        {
+
+            <div class="col-md-3 col-12 col-sm-6">
+                <div class="item-product">
+                    <div class="product-img-wrapper">
+                        <img src="@Url.Products(product.FileNamePhoto)" class="img-fluid" alt="@product.ProductTitle">
+                        <div>
+                            <a href="@Url.Action("Details","Store", new { id = product.ProductID})" class="btn">Zobacz&nbsp;<i class="fa fa-search"></i></a>
+                        </div>
+                    </div><hr />
+                    <h3><a href="@Url.Action("Details","Store", new { id = product.ProductID})">@product.ProductTitle</a></h3>
+                    <div class="product-price">@product.Price zł</div>
+                    <a href="@Url.Action("AddToShoppingCart","ShoppingCart", new { id = product.ProductID })" class="btn add2cart">
+                        Kup&nbsp;<i class="fa fa-cart-plus"></i>
+                    </a>
+                    <div class="overlay overlay-promotion"></div>
+                </div>
+            </div>
+
+
+        }
+
+    </div>
+
+</section>
+
+
+
+<section class="bg-white">
+    <div class="container con-bestseller">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Najlepiej sprzedające się:</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row container_content">
+        @foreach (var product in Model.TheBestProducts)
+        {
+            <div class="col-md-3 col-12 col-sm-6">
+                <div class="item-product">
+                    <div class="product-img-wrapper">
+                        <img src="@Url.Products(product.FileNamePhoto)" class="img-fluid" alt="@product.ProductTitle">
+                        <div>
+                            <a href="@Url.Action("Details","Store", new { id = product.ProductID})" class="btn">Zobacz&nbsp;<i class="fa fa-search"></i></a>
+
+                        </div>
+                    </div><hr />
+                    <h3><a href="@Url.Action("Details","Store", new { id = product.ProductID})">@product.ProductTitle</a></h3>
+                    <div class="product-price">@product.Price zł</div>
+                    <a href="@Url.Action("AddToShoppingCart","ShoppingCart", new { id = product.ProductID })" class="btn add2cart">
+                        Kup&nbsp;<i class="fa fa-cart-plus"></i>
+                    </a>
+                    <div class="overlay overlay-bestseller"></div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</section>
+
+
+
+<h1 class="text-center margintopsmall"> Nasi partnerzy:</h1>
+<section class="regular slider container">
+    <div>
+        <img src="@Url.Partners("biobattery.png")" />
+    </div>
+    <div>
+        <img src="@Url.Partners("certcenters.png")" />
+    </div>
+    <div>
+        <img src="@Url.Partners("dzieckoSPZ.png")" />
+    </div>
+    <div>
+        <img src="@Url.Partners("zabop.png")" />
+    </div>
+    <div>
+        <img src="@Url.Partners("nonfire.png")" />
+    </div>
+    <div>
+        <img src="@Url.Partners("safetoys.png")" />
+    </div>
+    <div>
+        <img src="@Url.Partners("securepay.png")" />
+    </div>
+    <div>
+        <img src="@Url.Partners("zdrowie.png")" />
+    </div>
+</section>
+
+
+@using (Html.BeginForm("SavedNewsletter", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="intro-header">
+        <div class="container-neswletter" align="center">
+            <div class="container">
+                <div class="tab-content custom-tab-content" align="center">
+                    <h1>Newsletter!</h1>
+                    <p>Zapisz się do newslettera i bądź na bieżąco z wszystkimi nowinkami w sklepie!</p>
+
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Newsletter.Email, new { htmlAttributes = new { @class = "form-control input-lg text-center", @placeholder = "Enter your Email" } })
+                            @Html.ValidationMessageFor(model => model.Newsletter.Email, "", new { @class = "text-danger" })
+                            @Html.ValidationMessage("EmailError", new { @class = "text-danger" })
+                        </div>   <div class="col-md-4"></div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <input type="submit" value="Zapisz się!" class="btn btn-light newsletterbtn" />
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".regular").slick({
+                dots: true,
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1000,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }]
+            });
+        });
+    </script>
+}
