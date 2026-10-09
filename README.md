@@ -174,12 +174,16 @@ Landing page displaying product categories, featured products, promotions, best-
 ### Other subpages
 Shipping page:
 </br>
-<img src="https://github.com/Midwo/ASP.NET-MVC-Demo-Shop-MD/blob/master/DemoShop/PhotosToReadmeFile/DemoShop_7.png" width="600" alt="photo4">
+<img src="https://github.com/Midwo/ASP.NET-MVC-Demo-Shop-MD/blob/master/DemoShop/PhotosToReadmeFile/DemoShop_8.png" width="600" alt="photo4">
+
+The website displays parcel shipping prices and includes a module that highlights the best option. Everything can be easily edited via the admin panel."
 </br>
 </br>
 Contact and Map page:
 </br>
-<img src="https://github.com/Midwo/ASP.NET-MVC-Demo-Shop-MD/blob/master/DemoShop/PhotosToReadmeFile/DemoShop_8.png" width="600" alt="photo5">
+<img src="https://github.com/Midwo/ASP.NET-MVC-Demo-Shop-MD/blob/master/DemoShop/PhotosToReadmeFile/DemoShop_7.png" width="600" alt="photo5">
+
+Displayed working hours, phone numbers, addresses, and emails are fully editable. The map is loaded via a generated link, which can easily be replaced with a different one. The contact form on the website allows users to send inquiries directly to the main site email."
 
 
 
@@ -253,4 +257,6 @@ Dashboard for managing recurring and background jobs executed by the application
 ### Generating reports and saving to Excel
 
 <img src="https://github.com/Midwo/ASP.NET-MVC-Demo-Shop-MD/blob/master/DemoShop/PhotosToReadmeFile/DemoShop_13.png" width="600" alt="photo16">
+
+You can easily generate and save a report of all newsletter subscribers directly to an Excel file.
 
